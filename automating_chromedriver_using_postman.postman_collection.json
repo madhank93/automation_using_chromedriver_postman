@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "aa433c96-e24c-4135-859e-2c2d787c98c6",
+		"name": "automating_chromedriver_using_postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Open chrome browser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "168579e2-f7c3-4f57-9a1c-36934c40a4f5",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.environment.set(\"session_ID\", jsonData.sessionId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"desiredCapabilities\": {\n        \"caps\": {\n            \"nativeEvents\": false,\n            \"browserName\": \"chrome\",\n            \"version\": \"\",\n            \"platform\": \"ANY\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9515/session",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9515",
+					"path": [
+						"session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Re-directing to google URL",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"url\" : \"https://www.google.co.in\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9515/session/{{session_ID}}/url",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9515",
+					"path": [
+						"session",
+						"{{session_ID}}",
+						"url"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Locating search text box",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9baff5f-12f8-432c-8897-5cfa6832a03d",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.environment.set(\"ELEMENT\", jsonData.value.ELEMENT);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"using\": \"name\",\n\t\"value\" : \"q\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9515/session/{{session_ID}}/element",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9515",
+					"path": [
+						"session",
+						"{{session_ID}}",
+						"element"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sending a search value (parameter)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"value\":[\"Latest news\"]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9515/session/{{session_ID}}/element/{{ELEMENT}}/value",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9515",
+					"path": [
+						"session",
+						"{{session_ID}}",
+						"element",
+						"{{ELEMENT}}",
+						"value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Quiting driver",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9515/session/{{session_ID}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9515",
+					"path": [
+						"session",
+						"{{session_ID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
