@@ -15,7 +15,7 @@
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);",
 							"",
-							"pm.environment.set(\"session_ID\", jsonData.sessionId);"
+							"pm.environment.set(\"session_id\", jsonData.sessionId);"
 						],
 						"type": "text/javascript"
 					}
@@ -76,7 +76,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9515/session/{{session_ID}}/url",
+					"raw": "http://localhost:9515/session/{{session_id}}/url",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -84,7 +84,7 @@
 					"port": "9515",
 					"path": [
 						"session",
-						"{{session_ID}}",
+						"{{session_id}}",
 						"url"
 					]
 				}
@@ -101,7 +101,7 @@
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);",
 							"",
-							"pm.environment.set(\"ELEMENT\", jsonData.value.ELEMENT);"
+							"pm.environment.set(\"search_box\", jsonData.value.ELEMENT);"
 						],
 						"type": "text/javascript"
 					}
@@ -127,7 +127,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9515/session/{{session_ID}}/element",
+					"raw": "http://localhost:9515/session/{{session_id}}/element",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -135,7 +135,7 @@
 					"port": "9515",
 					"path": [
 						"session",
-						"{{session_ID}}",
+						"{{session_id}}",
 						"element"
 					]
 				}
@@ -164,7 +164,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9515/session/{{session_ID}}/element/{{ELEMENT}}/value",
+					"raw": "http://localhost:9515/session/{{session_id}}/element/{{search_box}}/value",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -172,10 +172,112 @@
 					"port": "9515",
 					"path": [
 						"session",
-						"{{session_ID}}",
+						"{{session_id}}",
 						"element",
-						"{{ELEMENT}}",
+						"{{search_box}}",
 						"value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Locate google search button",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "38bad93e-32d0-4d4b-94ea-3b36ea1ad0e1",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.environment.set(\"search_button\", jsonData.value.ELEMENT);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"using\": \"name\",\n\t\"value\" : \"btnK\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9515/session/{{session_id}}/element",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9515",
+					"path": [
+						"session",
+						"{{session_id}}",
+						"element"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Locate google search button Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "38bad93e-32d0-4d4b-94ea-3b36ea1ad0e1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9515/session/{{session_id}}/element/{{search_button}}/click",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9515",
+					"path": [
+						"session",
+						"{{session_id}}",
+						"element",
+						"{{search_button}}",
+						"click"
 					]
 				}
 			},
@@ -187,7 +289,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9515/session/{{session_ID}}",
+					"raw": "http://localhost:9515/session/{{session_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -195,7 +297,7 @@
 					"port": "9515",
 					"path": [
 						"session",
-						"{{session_ID}}"
+						"{{session_id}}"
 					]
 				}
 			},
