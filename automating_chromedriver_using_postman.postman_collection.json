@@ -233,7 +233,7 @@
 			"response": []
 		},
 		{
-			"name": "Locate google search button Copy",
+			"name": "Click on search button",
 			"event": [
 				{
 					"listen": "test",
