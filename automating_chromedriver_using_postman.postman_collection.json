@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "aa433c96-e24c-4135-859e-2c2d787c98c6",
+		"_postman_id": "a382b027-93ba-44de-af7f-47b35400f870",
 		"name": "automating_chromedriver_using_postman",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,7 +15,7 @@
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);",
 							"",
-							"pm.environment.set(\"session_id\", jsonData.sessionId);"
+							"pm.environment.set(\"session_id\", jsonData.value.sessionId);"
 						],
 						"type": "text/javascript"
 					}
@@ -33,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"desiredCapabilities\": {\n        \"caps\": {\n            \"nativeEvents\": false,\n            \"browserName\": \"chrome\",\n            \"version\": \"\",\n            \"platform\": \"ANY\"\n        }\n    }\n}",
+					"raw": "{\n    \"capabilities\": {\n        \"browserName\": \"chrome\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -101,7 +101,7 @@
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);",
 							"",
-							"pm.environment.set(\"search_box\", jsonData.value.ELEMENT);"
+							"pm.environment.set(\"search_box\", jsonData.value[\"element-6066-11e4-a52e-4f735466cecf\"]);"
 						],
 						"type": "text/javascript"
 					}
@@ -119,7 +119,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"using\": \"name\",\n\t\"value\" : \"q\"\n}",
+					"raw": "{\n    \"using\": \"xpath\",\n    \"value\": \"//input[@name='q']\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -156,7 +156,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"value\":[\"Latest news\"]}",
+					"raw": "{\"text\":\"madhank93\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -191,7 +191,7 @@
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);",
 							"",
-							"pm.environment.set(\"search_button\", jsonData.value.ELEMENT);"
+							"pm.environment.set(\"search_button\", jsonData.value[\"element-6066-11e4-a52e-4f735466cecf\"]);"
 						],
 						"type": "text/javascript"
 					}
@@ -209,7 +209,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"using\": \"name\",\n\t\"value\" : \"btnK\"\n}",
+					"raw": "{\n\t\"using\": \"xpath\" ,\n\t\"value\": \"//div[@class='FPdoLc tfB0Bf']//input[@name='btnK']\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -258,7 +258,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{}",
 					"options": {
 						"raw": {
 							"language": "json"
